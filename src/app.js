@@ -14,7 +14,7 @@ function rollAndDisplay() {
 }
 
 const enableMotionBtn = document.getElementById("enable-motion");
-
+let lastTime = Date.now();
 function handlerFunction(event) {
   let { x, y, z } = event.accelerationIncludingGravity;
   let acc = Math.abs(x) + Math.abs(y) + Math.abs(z);
