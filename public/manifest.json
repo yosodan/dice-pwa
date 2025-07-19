@@ -1,0 +1,15 @@
+{
+  "name": "Dice PWA",
+  "short_name": "Dice",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Roll a dice by shaking or scrolling!",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

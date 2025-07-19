@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice PWA</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="../src/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>🎲 Dice Roller</h1>
+      <div id="dice" class="dice-face">-</div>
+      <p id="instructions">
+        Shake your device or scroll your mouse/trackpad to roll the dice.
+      </p>
+    </main>
+    <script src="../src/app.js" type="module"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("../src/sw.js")
+          .then(() => console.log("Service Worker registered successfully."))
+          .catch((err) =>
+            console.error("Service Worker registration failed:", err)
+          );
+      }
+    </script>
+  </body>
+</html>
