@@ -15,3 +15,4 @@ This app is a Progressive Web App (PWA): it works offline and can be installed o
 - Offline support via Service Worker
 
 ## Getting Started
+[dice-pwa](https://yosodan.github.io/dice-pwa/public/)
