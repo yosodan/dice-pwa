@@ -1,15 +1,22 @@
 const CACHE = "dice-pwa-v1";
 const ASSETS = [
   "/",
-  "/public/index.html",
+  "/public/",
+  "/public/manifest.json",
   "/src/style.css",
   "/src/app.js",
   "/src/dice.js",
-  "/public/manifest.json",
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
+  event.waitUntil(
+    caches
+      .open(CACHE)
+      .then((cache) => cache.addAll(ASSETS))
+      .catch((err) => {
+        console.error("Failed to cache assets:", err);
+      })
+  );
   self.skipWaiting();
 });
 
