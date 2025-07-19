@@ -29,6 +29,22 @@ if (window.DeviceMotionEvent) {
   });
 }
 
+// Handle iOS permission request for motion events
+if (typeof DeviceMotionEvent.requestPermission === "function") {
+  DeviceMotionEvent.requestPermission()
+    .then((response) => {
+      if (response === "granted") {
+        window.addEventListener("devicemotion", handlerFunction);
+      } else {
+        // Handle denied case
+      }
+    })
+    .catch(console.error);
+} else {
+  // Non-iOS: just add the event listener
+  window.addEventListener("devicemotion", handlerFunction);
+}
+
 // Detect scroll on desktop
 let isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 if (!isTouch) {
