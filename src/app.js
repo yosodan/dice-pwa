@@ -13,35 +13,32 @@ function rollAndDisplay() {
   showDice(num);
 }
 
-// Detect mobile shake gesture
-if (window.DeviceMotionEvent) {
-  let threshold = 15;
-  let lastTime = 0;
-  window.addEventListener("devicemotion", function (event) {
-    let { x, y, z } = event.accelerationIncludingGravity;
-    let acc = Math.abs(x) + Math.abs(y) + Math.abs(z);
+const enableMotionBtn = document.getElementById("enable-motion");
 
-    let now = Date.now();
-    if (acc > threshold && now - lastTime > 1000) {
-      rollAndDisplay();
-      lastTime = now;
-    }
-  });
+function handlerFunction(event) {
+  let { x, y, z } = event.accelerationIncludingGravity;
+  let acc = Math.abs(x) + Math.abs(y) + Math.abs(z);
+  let now = Date.now();
+  if (acc > 15 && now - lastTime > 1000) {
+    rollAndDisplay();
+    lastTime = now;
+  }
 }
 
-// Handle iOS permission request for motion events
-if (typeof DeviceMotionEvent.requestPermission === "function") {
-  DeviceMotionEvent.requestPermission()
-    .then((response) => {
+if (
+  typeof DeviceMotionEvent !== "undefined" &&
+  typeof DeviceMotionEvent.requestPermission === "function"
+) {
+  enableMotionBtn.style.display = "block";
+  enableMotionBtn.addEventListener("click", () => {
+    DeviceMotionEvent.requestPermission().then((response) => {
       if (response === "granted") {
         window.addEventListener("devicemotion", handlerFunction);
-      } else {
-        // Handle denied case
+        enableMotionBtn.style.display = "none";
       }
-    })
-    .catch(console.error);
+    });
+  });
 } else {
-  // Non-iOS: just add the event listener
   window.addEventListener("devicemotion", handlerFunction);
 }
 

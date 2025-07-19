@@ -1,7 +1,7 @@
 {
   "name": "Dice PWA",
   "short_name": "Dice",
-  "start_url": "/",
+  "start_url": "/dice-pwa/public",
   "display": "standalone",
   "background_color": "#ffffff",
   "description": "Roll a dice by shaking or scrolling!",
